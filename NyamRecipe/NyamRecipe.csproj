@@ -73,30 +73,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Components\PartialClass\Dish.cs" />
-    <Compile Include="Components\PartialClass\Ingredient.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="Pages\AddEditPart.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\ListDishesPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\ListParts.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\RecipePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Model\Category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -130,6 +106,30 @@
     <Compile Include="Model\Unit.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="PartialClass\Dish.cs" />
+    <Compile Include="PartialClass\Ingredient.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Pages\AddEditPart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ListDishesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ListParts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RecipePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Pages\AddEditPart.xaml.cs">
       <DependentUpon>AddEditPart.xaml</DependentUpon>
     </Compile>
@@ -175,9 +175,19 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\Logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ff588fd0-0bbd-40e1-9cf5-3306e406dc5e.jfif" />
+    <None Include="Resources\c44bb7af-55db-41e0-a6c5-053d3d1b7be8.jfif" />
+    <None Include="Resources\a3341e30-15db-4994-92ad-a74d49be27a7.jfif" />
+    <None Include="Resources\25c06dbf-fb5d-4aea-98be-9e174599bb5f %281%29.jfif" />
+    <None Include="Resources\12afe888-b6a6-49c1-b99d-0eeea33f8e29.jfif" />
+    <None Include="Resources\8e04a6f4-a42a-4a1c-8758-21e4a880692e.jfif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Model\Model1.Context.tt">
@@ -190,15 +200,6 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <None Include="Resources\ff588fd0-0bbd-40e1-9cf5-3306e406dc5e.jfif" />
-    <None Include="Resources\c44bb7af-55db-41e0-a6c5-053d3d1b7be8.jfif" />
-    <None Include="Resources\a3341e30-15db-4994-92ad-a74d49be27a7.jfif" />
-    <None Include="Resources\25c06dbf-fb5d-4aea-98be-9e174599bb5f %281%29.jfif" />
-    <None Include="Resources\12afe888-b6a6-49c1-b99d-0eeea33f8e29.jfif" />
-    <None Include="Resources\8e04a6f4-a42a-4a1c-8758-21e4a880692e.jfif" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -50,7 +50,7 @@
             <Line Stroke="#FFFEAF4A" StrokeThickness="15" X1="0" X2="800"/>
             <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
                 <TextBlock x:Name="TbCounter" FontSize="16"/>
-                <TextBlock Text=" наименований" FontSize="16"/>
+                <TextBlock FontSize="16"/>
 
                 <TextBlock x:Name="TbFoodSumm" Margin="320 0 0 0"/>
             </StackPanel>

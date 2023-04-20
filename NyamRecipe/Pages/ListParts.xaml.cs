@@ -34,7 +34,7 @@ namespace NyamRecipe.Pages
             
         }
         int numberPage = 0;
-        int count = 4;
+        int count = 5;
         int maxPage = App.DB.Ingredient.Where(x => x.IsDelete != true).Count() / 5;
         int fakePage = 1;
         int ButtonPage;

@@ -21,7 +21,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Orientation="Vertical">
+                <StackPanel Margin="5 0 0 0" Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Категория: " FontSize="15"/>
                         <TextBlock Text="{Binding Category.Name}" FontSize="15"/>
@@ -31,7 +31,7 @@
                         <TextBlock x:Name="TBCookingTime" FontSize="15"/>
                     </StackPanel>
                 </StackPanel>
-                <StackPanel Grid.Column="1">
+                <StackPanel Margin="5 0 0 0" Grid.Column="1">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <TextBlock FontSize="15" Text="Порций: " VerticalAlignment="Center"/>
                         <StackPanel Orientation="Horizontal">

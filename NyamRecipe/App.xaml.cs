@@ -14,6 +14,6 @@ namespace NyamRecipe
     /// </summary>
     public partial class App : Application
     {
-        public static NN DB = new NN();
+        public static NNEn DB = new NNEn();
     }
 }

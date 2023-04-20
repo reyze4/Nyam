@@ -13,10 +13,10 @@ namespace NyamRecipe.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class NN : DbContext
+    public partial class NNEn : DbContext
     {
-        public NN()
-            : base("name=NN")
+        public NNEn()
+            : base("name=NNEn")
         {
         }
     
