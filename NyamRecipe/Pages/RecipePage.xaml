@@ -1,0 +1,120 @@
+﻿<Page x:Class="NyamRecipe.Pages.RecipePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NyamRecipe.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RecipePage">
+
+    <Grid Background="White" Width="700">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="130"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="{Binding Name, StringFormat='Рецепт для {0} '}" FontSize="23"/>
+            <Line Stroke="#FFFEAF4A" StrokeThickness="15" X1="0" X2="800" Margin="0 10 0 10"/>
+            <Grid Height="59">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Категория: " FontSize="15"/>
+                        <TextBlock Text="{Binding Category.Name}" FontSize="15"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Время на приготовление: " FontSize="15"/>
+                        <TextBlock x:Name="TBCookingTime" FontSize="15"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock FontSize="15" Text="Порций: " VerticalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Width="20" Height="20" Content="-" x:Name="BMinus" Click="Button_Click" Style="{StaticResource MenuBtn}"/>
+                            <Border Width="35" Height="20" BorderThickness="1" BorderBrush="Black" Margin="5 0 5 0">
+                                <TextBlock HorizontalAlignment="Center" x:Name="TBQuantity" />
+                            </Border>
+                            <Button Width="20" Height="20" Content="+" x:Name="BPlus" Click="Button_Click" Style="{StaticResource MenuBtn}"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <TextBlock FontSize="15" x:Name="TBGeneralSum" Text="Общая стоимость: NaN руб."/>
+                </StackPanel>
+            </Grid>
+
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border BorderBrush="Black"
+                        BorderThickness="1">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Ингредиенты:"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="20"/>
+                        <DataGrid x:Name="CsvGrid" ColumnWidth="*"
+                      ColumnHeaderHeight="40" AutoGenerateColumns="False"  
+                      ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                      ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                      ScrollViewer.CanContentScroll="False"
+                      CanUserAddRows ="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header= "Наименование" IsReadOnly="True" Binding="{Binding Name}"/>
+                                <DataGridTextColumn Header= "Кол-во" IsReadOnly="True" Binding="{Binding AvailableCount}"/>
+                                <DataGridTextColumn Header= "Ед. изм" IsReadOnly="True" Binding="{Binding Unit.Name}"/>
+
+                                <DataGridTextColumn Header="Цена" IsReadOnly="True" Binding="{Binding Cost, StringFormat=F}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1" BorderBrush="Black"
+                        BorderThickness="1">
+                    <StackPanel>
+                        <TextBlock Text="Приготовление:"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="20"/>
+                        <DataGrid x:Name="LVDescription" Height="280"
+                          IsHitTestVisible="True"
+                          LoadingRow="LVDescription_LoadingRow"
+                          ColumnHeaderHeight="40" AutoGenerateColumns="False"  
+                          ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                          CanUserAddRows ="False"
+                          ColumnWidth="*"
+                          >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn  Header= "Наименование" IsReadOnly="True" Binding="{Binding Description}">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style>
+                                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                            <Setter Property="TextBlock.FontSize" Value="15"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+
+
+            </Grid>
+            <Button Grid.Row="1" Content="Готовим!" Width="100" Height="30" Click="Button_Click_1" Style="{StaticResource MenuBtn}"/>
+        </Grid>
+    </Grid>
+</Page>

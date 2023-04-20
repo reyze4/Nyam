@@ -1,0 +1,108 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NyamRecipe.Pages"
+      xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="NyamRecipe.Pages.ListParts"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="800"
+      Title="ListParts" Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <Style x:Key="ColumnHeaderGripperStyle" TargetType="{x:Type Thumb}">
+            <Setter Property="Width" Value="8"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Cursor" Value="SizeWE"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="DatePartsColumns" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                        <Grid>
+                            <Themes:DataGridHeaderBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" IsClickable="{TemplateBinding CanUserSort}" IsPressed="{TemplateBinding IsPressed}" IsHovered="{TemplateBinding IsMouseOver}" Padding="{TemplateBinding Padding}" SortDirection="{TemplateBinding SortDirection}" SeparatorBrush="{TemplateBinding SeparatorBrush}" SeparatorVisibility="{TemplateBinding SeparatorVisibility}">
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Themes:DataGridHeaderBorder>
+                            <Thumb x:Name="PART_LeftHeaderGripper" HorizontalAlignment="Left" Style="{StaticResource ColumnHeaderGripperStyle}"/>
+                            <Thumb x:Name="PART_RightHeaderGripper" HorizontalAlignment="Right" Style="{StaticResource ColumnHeaderGripperStyle}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="White">
+        <StackPanel Margin="10 0 10 0">
+            <TextBlock Text="Список ингредиентов" FontSize="33"/>
+            <Line Stroke="#FFFEAF4A" StrokeThickness="15" X1="0" X2="800"/>
+            <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                <TextBlock x:Name="TbCounter" FontSize="16"/>
+                <TextBlock Text=" наименований" FontSize="16"/>
+
+                <TextBlock x:Name="TbFoodSumm" Margin="320 0 0 0"/>
+            </StackPanel>
+            <DataGrid x:Name="DtGreedient" Height="360" AutoGenerateColumns="False" ColumnWidth="*"  ColumnHeaderStyle="{DynamicResource DatePartsColumns}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Наименование ингридиента" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Цена">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <Setter Property="Background" Value="{Binding PriceColor}" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                        <DataGridTextColumn.Binding>
+                            <MultiBinding StringFormat="{}{0:N0} руб. за {1} {2}">
+                                <Binding Path="Cost"/>
+                                <Binding Path="CostForCount"/>
+                                <Binding Path="Unit.Name"/>
+                            </MultiBinding>
+                        </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="В наличии">
+                        <DataGridTextColumn.Binding>
+                            <MultiBinding StringFormat=" {1} {0}">
+                                <Binding Path="Unit.Name"/>
+                                <Binding Path="AvailableCount"/>
+                            </MultiBinding>
+                        </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Действия">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Margin="10 10 0 2"><Hyperlink Foreground="Blue" x:Name="LinkEdit" Click="LinkEdit_Click"><Run Text="Редактировать"/></Hyperlink></TextBlock>
+                                    <TextBlock Margin="10 2 0 10"><Hyperlink Foreground="Red" x:Name="LinkDelete" Click="LinkDelete_Click"><Run Text="Удалить"/></Hyperlink></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 10 0 0" Height="30">
+                <Button Style="{StaticResource MenuBtn}" Width="30" x:Name="BtnFirstPage" Click="BtnFirstPage_Click" Content="&lt;&lt;"/>
+                <Button Margin="5 0 0 0" Style="{StaticResource MenuBtn}" Width="30" x:Name="BtnPreviousPage" Click="BtnPreviousPage_Click" Content="&lt;"/>
+                <Label x:Name="LblPages" VerticalAlignment="Center" FontSize="16" Height="30" Width="50" Margin="10 0 10 0"/>
+                <Button Style="{StaticResource MenuBtn}" Width="30" x:Name="BtnNextPage" Click="BtnNextPage_Click" Content="&gt;"/>
+                <Button Margin="5 0 0 0" Style="{StaticResource MenuBtn}" Width="30" x:Name="BtnLastPage" Click="BtnLastPage_Click" Content="&gt;&gt;"/>
+                <StackPanel Margin="20 0 0 0" x:Name="SPanelPages" Orientation="Horizontal">
+                    
+                </StackPanel>
+                <Button Width="30" Height="30" Margin="50 0 0 0" Content="+" FontSize="18" Background="#FFEDD4FF" Style="{StaticResource PinkBtn}" FontWeight="Bold" Click="Button_Click"/>
+                
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
